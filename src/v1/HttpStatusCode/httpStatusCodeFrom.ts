@@ -31,8 +31,22 @@
 // ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
+import { makeRefinedTypeFactory, RefinedTypeFactory } from "@ganbarodigital/ts-lib-value-objects/lib/v2";
 
-export * from "./HttpStatusCode";
-export * from "./httpStatusCodeFrom";
-export * from "./isHttpStatusCode";
-export * from "./mustBeHttpStatusCode";
+import { HttpStatusCode } from "./HttpStatusCode";
+import { mustBeHttpStatusCode } from "./mustBeHttpStatusCode";
+
+// we need a default OnError handler
+const defaultOnErrorHandler = (reason: symbol, desc: string, extra: object): never => {
+    throw new Error("invalid HTTP status code");
+};
+
+// we need to give the TypeScript compiler a bit of help
+type HttpStatusCodeFactory = RefinedTypeFactory<number, HttpStatusCode, object>;
+
+/**
+ * smart constructor. turns a `number` type into a `HttpStatusCode` type
+ */
+export const httpStatusCodeFrom: HttpStatusCodeFactory = makeRefinedTypeFactory(
+    mustBeHttpStatusCode, defaultOnErrorHandler,
+);

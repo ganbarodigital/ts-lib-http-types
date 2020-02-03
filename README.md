@@ -8,6 +8,7 @@ This TypeScript library provides some basic types to describe the HTTP protocol.
 - [Quick Start](#quick-start)
 - [V1 API](#v1-api)
   - [HttpStatusCode](#httpstatuscode)
+  - [httpStatusCodeFrom()](#httpstatuscodefrom)
   - [isHttpStatusCode()](#ishttpstatuscode)
   - [mustBeHttpStatusCode()](#mustbehttpstatuscode)
 - [NPM Scripts](#npm-scripts)
@@ -42,6 +43,14 @@ export type HttpStatusCode = Branded<number, "@ganbarodigital/HttpStatusCode">;
 ```
 
 `HttpStatusCode` is a _type_. At runtime, it resolves down to a native Javascript `number`.
+
+### httpStatusCodeFrom()
+
+```typescript
+export function httpStatusCodeFrom(input: number, onError?: OnError): HttpStatusCode;
+```
+
+`httpStatusCodeFrom()` is a _smart constructor_. It converts input `numbers` into `HttpStatusCode` types at compile time.
 
 ### isHttpStatusCode()
 
