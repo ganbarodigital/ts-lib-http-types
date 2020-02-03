@@ -32,5 +32,12 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //
 
-export * from "./HttpStatusCode";
-export * from "./isHttpStatusCode";
+/**
+ * data guard. checks to see if the `input` value is in the range
+ * of HTTP status codes.
+ *
+ * returns `true` if `input` is a number between 100 and 599 inclusive.
+ */
+export function isHttpStatusCode(input: number): boolean {
+    return (input >= 100 && input <= 599);
+}

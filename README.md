@@ -4,6 +4,17 @@
 
 This TypeScript library provides some basic types to describe the HTTP protocol. Use it to improve the type-safety of your code.
 
+- [Introduction](#introduction)
+- [Quick Start](#quick-start)
+- [V1 API](#v1-api)
+  - [HttpStatusCode](#httpstatuscode)
+  - [isHttpStatusCode()](#ishttpstatuscode)
+- [NPM Scripts](#npm-scripts)
+  - [npm run clean](#npm-run-clean)
+  - [npm run build](#npm-run-build)
+  - [npm run test](#npm-run-test)
+  - [npm run cover](#npm-run-cover)
+
 ## Quick Start
 
 ```
@@ -30,6 +41,20 @@ export type HttpStatusCode = Branded<number, "@ganbarodigital/HttpStatusCode">;
 ```
 
 `HttpStatusCode` is a _type_. At runtime, it resolves down to a native Javascript `number`.
+
+### isHttpStatusCode()
+
+```typescript
+/**
+ * data guard. checks to see if the `input` value is in the range
+ * of HTTP status codes.
+ *
+ * returns `true` if `input` is a number between 100 and 599 inclusive.
+ */
+export function isHttpStatusCode(input: number): boolean;
+```
+
+`isHttpStatusCode()` is a _data guard_. Use it to make sure that a given number is a valid HTTP status code.
 
 ## NPM Scripts
 
