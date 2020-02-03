@@ -25,19 +25,7 @@ The following changes have been completed, and will be included in the next tagg
 
 ### New
 
-### Fixes
-
-### Dependencies
-
-### Tools
-
-## v0.0.1
-
-Released Monday, 1st January 2020.
-
-### Backwards-Compatibility Breaks
-
-### New
+* Added `HttpStatusCode` type
 
 ### Fixes
 

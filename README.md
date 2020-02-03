@@ -20,7 +20,16 @@ __VS Code users:__ once you've added a single import anywhere in your project, y
 
 ## V1 API
 
-TBD.
+### HttpStatusCode
+
+```typescript
+/**
+ * represents any HTTP status code in the range `100` to `599` inclusive
+ */
+export type HttpStatusCode = Branded<number, "@ganbarodigital/HttpStatusCode">;
+```
+
+`HttpStatusCode` is a _type_. At runtime, it resolves down to a native Javascript `number`.
 
 ## NPM Scripts
 

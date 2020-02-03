@@ -29,6 +29,8 @@
   ],
   "license": "BSD-3-Clause",
   "dependencies": {
+    "@ganbarodigital/ts-lib-value-objects": "file:../ts-lib-value-objects",
+    "@ganbarodigital/ts-on-error": "0.0.2",
     "@types/node": "^13.1.2",
     "tslint": "^5.20.1",
     "typescript": "^3.7.4"
