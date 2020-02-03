@@ -31,7 +31,41 @@
 // ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
+import { OnError } from "@ganbarodigital/ts-on-error/lib/V1";
+import { expect } from "chai";
+import { describe } from "mocha";
 
-export * from "./HttpStatusCode";
-export * from "./isHttpStatusCode";
-export * from "./mustBeHttpStatusCode";
+import { mustBeHttpStatusCode } from "./mustBeHttpStatusCode";
+
+describe("mustBeHttpStatusCode()", () => {
+    const onError: OnError = (reason: symbol, desc: string, extra: object): never => {
+        throw new Error(JSON.stringify(extra));
+    };
+
+    it("accepts integers in the range 100-599 inclusive", () => {
+        for (let inputValue = 100; inputValue < 600; inputValue++) {
+            mustBeHttpStatusCode(inputValue, onError);
+        }
+    });
+
+    it("rejects non-integers in the range 100-599 inclusive", () => {
+        for (let inputValue = 100.5; inputValue < 600; inputValue++) {
+            const expectedMessage = "{\"input\":" + inputValue + "}";
+            expect(() => mustBeHttpStatusCode(inputValue, onError)).to.throw(expectedMessage);
+        }
+    });
+
+    it("rejects numbers below 100", () => {
+        for (let inputValue = -100; inputValue < 100; inputValue++) {
+            const expectedMessage = "{\"input\":" + inputValue + "}";
+            expect(() => mustBeHttpStatusCode(inputValue, onError)).to.throw(expectedMessage);
+        }
+    });
+
+    it("rejects numbers above 599", () => {
+        for (let inputValue = 600; inputValue < 1000; inputValue++) {
+            const expectedMessage = "{\"input\":" + inputValue + "}";
+            expect(() => mustBeHttpStatusCode(inputValue, onError)).to.throw(expectedMessage);
+        }
+    });
+});

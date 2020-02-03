@@ -9,6 +9,7 @@ This TypeScript library provides some basic types to describe the HTTP protocol.
 - [V1 API](#v1-api)
   - [HttpStatusCode](#httpstatuscode)
   - [isHttpStatusCode()](#ishttpstatuscode)
+  - [mustBeHttpStatusCode()](#mustbehttpstatuscode)
 - [NPM Scripts](#npm-scripts)
   - [npm run clean](#npm-run-clean)
   - [npm run build](#npm-run-build)
@@ -54,7 +55,19 @@ export type HttpStatusCode = Branded<number, "@ganbarodigital/HttpStatusCode">;
 export function isHttpStatusCode(input: number): boolean;
 ```
 
-`isHttpStatusCode()` is a _data guard_. Use it to make sure that a given number is a valid HTTP status code.
+`isHttpStatusCode()` is a _data guard_. Use it to check that a given number is a valid HTTP status code.
+
+### mustBeHttpStatusCode()
+
+```typescript
+/**
+ * data guarantee. calls the supplied `onError()` handler if the `input`
+ * number is not a valid HTTP status code.
+ */
+export function mustBeHttpStatusCode(input: number, onError: OnError): void
+```
+
+`mustBeHttpStatusCode()` is a _data guarantee_. Use it to make sure that a given number is a valid HTTP status code.
 
 ## NPM Scripts
 

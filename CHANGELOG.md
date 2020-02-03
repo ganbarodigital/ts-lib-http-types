@@ -27,6 +27,7 @@ The following changes have been completed, and will be included in the next tagg
 
 * Added `HttpStatusCode` type
 * Added `isHttpStatusCode()` data guard
+* Added `mustBeHttpStatusCode()` data guarantee
 
 ### Fixes
 

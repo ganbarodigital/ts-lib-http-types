@@ -31,7 +31,31 @@
 // ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
+import { OnError } from "@ganbarodigital/ts-on-error/lib/V1";
 
-export * from "./HttpStatusCode";
-export * from "./isHttpStatusCode";
-export * from "./mustBeHttpStatusCode";
+import { isHttpStatusCode } from "./isHttpStatusCode";
+
+
+export const notAnIntegerError = Symbol("@ganbarodigital/ts-lib-http-types/not-an-integer");
+export const httpStatusCodeOutOfRangeError = Symbol("@ganbarodigital/ts-lib-http-types/http-status-code-out-of-range");
+
+/**
+ * data guarantee. calls the supplied `onError()` handler if the `input`
+ * number is not a valid HTTP status code.
+ */
+export function mustBeHttpStatusCode(input: number, onError: OnError): void {
+    // make sure that `input` is an integer
+    //
+    // if anyone passes in a massive number, this will report a false
+    // error ... but the performance increase that comes from the bitshift
+    // operation is more than worth it
+    if (input >>> 0 != input) {
+        onError(notAnIntegerError, "input must be an integer", {input});
+    }
+
+    if (!isHttpStatusCode(input)) {
+        onError(httpStatusCodeOutOfRangeError, "input falls outside the range of a valid HTTP status code", {input});
+    }
+
+    // if we get here, all is good
+}
