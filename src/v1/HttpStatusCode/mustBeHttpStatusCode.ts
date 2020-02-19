@@ -35,7 +35,6 @@ import { OnError } from "@ganbarodigital/ts-on-error/lib/V1";
 
 import { isHttpStatusCode } from "./isHttpStatusCode";
 
-
 export const notAnIntegerError = Symbol("@ganbarodigital/ts-lib-http-types/not-an-integer");
 export const httpStatusCodeOutOfRangeError = Symbol("@ganbarodigital/ts-lib-http-types/http-status-code-out-of-range");
 
@@ -49,7 +48,8 @@ export function mustBeHttpStatusCode(input: number, onError: OnError): void {
     // if anyone passes in a massive number, this will report a false
     // error ... but the performance increase that comes from the bitshift
     // operation is more than worth it
-    if (input >>> 0 != input) {
+    // tslint:disable-next-line: no-bitwise
+    if (input >>> 0 !== input) {
         onError(notAnIntegerError, "input must be an integer", {input});
     }
 
