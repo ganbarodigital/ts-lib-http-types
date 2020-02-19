@@ -1,8 +1,8 @@
 {
-  "name": "@ganbarodigital/<<YOUR-PACKAGE-NAME>>",
+  "name": "@ganbarodigital/ts-lib-http-types",
   "version": "0.0.1",
-  "description": "Converts human-readable UUIDs to bytes",
-  "repository": "github:ganbarodigital/<<YOUR-PACKAGE-NAME>>",
+  "description": "Basic types to describe the HTTP protocol",
+  "repository": "github:ganbarodigital/ts-lib-http-types",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -17,7 +17,10 @@
   "contributors": [
     "Stuart Herbert <stuherbert@ganbarodigital.com> (https://ganbarodigital.com)"
   ],
-  "keywords": [],
+  "keywords": [
+    "http",
+    "type safety"
+  ],
   "files": [
     "lib/**/*",
     "CHANGELOG.md",
@@ -26,6 +29,8 @@
   ],
   "license": "BSD-3-Clause",
   "dependencies": {
+    "@ganbarodigital/ts-lib-value-objects": "file:../ts-lib-value-objects",
+    "@ganbarodigital/ts-on-error": "0.0.2",
     "@types/node": "^13.1.2",
     "tslint": "^5.20.1",
     "typescript": "^3.7.4"
