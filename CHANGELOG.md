@@ -21,7 +21,9 @@ For each release, changes are grouped under these headings:
 
 The following changes have been completed, and will be included in the next tagged release.
 
-### Backwards-Compatibility Breaks
+## v0.0.1
+
+Released Wednesday, 19th February 2020.
 
 ### New
 
@@ -29,9 +31,3 @@ The following changes have been completed, and will be included in the next tagg
 * Added `httpStatusCodeFrom()` smart constructor
 * Added `isHttpStatusCode()` data guard
 * Added `mustBeHttpStatusCode()` data guarantee
-
-### Fixes
-
-### Dependencies
-
-### Tools
