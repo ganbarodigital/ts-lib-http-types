@@ -31,7 +31,7 @@
 // ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-import { Branded } from "@ganbarodigital/ts-lib-value-objects/lib/v2";
+import { Branded } from "@ganbarodigital/ts-lib-value-objects/lib/V1";
 
 /**
  * represents any HTTP status code in the range `100` to `599` inclusive

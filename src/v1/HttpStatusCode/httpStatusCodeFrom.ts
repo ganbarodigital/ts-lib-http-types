@@ -31,7 +31,7 @@
 // ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-import { makeRefinedTypeFactory, RefinedTypeFactory } from "@ganbarodigital/ts-lib-value-objects/lib/v2";
+import { makeRefinedTypeFactory, RefinedTypeFactory } from "@ganbarodigital/ts-lib-value-objects/lib/V1";
 
 import { HttpStatusCode } from "./HttpStatusCode";
 import { mustBeHttpStatusCode } from "./mustBeHttpStatusCode";
