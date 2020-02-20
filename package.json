@@ -1,6 +1,6 @@
 {
   "name": "@ganbarodigital/ts-lib-http-types",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Basic types to describe the HTTP protocol",
   "repository": "github:ganbarodigital/ts-lib-http-types",
   "main": "lib/index.js",
@@ -10,7 +10,7 @@
     "lint": "tslint -p ./tsconfig.json",
     "prepublishOnly": "npm test && npm run lint",
     "prepack": "npm run build",
-    "test": "npm run clean && tsc -p ./tsconfig-test.json && mocha -r ts-node/register \"src/**/*.spec.ts\"",
+    "test": "npm run clean && tsc -p ./tsconfig.json && mocha -r ts-node/register \"src/**/*.spec.ts\"",
     "cover": "rimraf coverage && rimraf .nyc_output && nyc --cache=false npm run test",
     "clean": "rimraf lib"
   },
@@ -29,7 +29,7 @@
   ],
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@ganbarodigital/ts-lib-error-reporting": "^0.1.1",
+    "@ganbarodigital/ts-lib-error-reporting": "file:../ts-lib-error-reporting",
     "@types/node": "^13.1.2",
     "tslint": "^5.20.1",
     "typescript": "^3.7.4"

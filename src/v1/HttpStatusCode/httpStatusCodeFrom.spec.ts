@@ -35,15 +35,11 @@ import { AnyAppError, OnError } from "@ganbarodigital/ts-lib-error-reporting/lib
 import { expect } from "chai";
 import { describe } from "mocha";
 
-import { HttpStatusCode, httpStatusCodeFrom } from "../internal";
+import { httpStatusCodeFrom } from ".";
 
 describe("httpStatusCodeFrom()", () => {
     const onError: OnError = (e: AnyAppError): never => {
         throw new Error(JSON.stringify(e.details.extra));
-    };
-
-    const identity = (input: HttpStatusCode): HttpStatusCode => {
-        return input;
     };
 
     it("converts integers in the range 100-599 inclusive", () => {

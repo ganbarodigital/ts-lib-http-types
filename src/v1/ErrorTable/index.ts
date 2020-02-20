@@ -32,6 +32,9 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //
 
-export { ERROR_TABLE, PackageErrorTable } from "./PackageErrorTable";
-export { HttpStatusCodeOutOfRangeError } from "./HttpStatusCodeOutOfRange";
-export { NotAnIntegerError } from "./NotAnInteger";
+export {
+    ERROR_TABLE,
+    PackageErrorTable,
+    HttpStatusCodeOutOfRangeError,
+    NotAnIntegerError,
+} from "@ganbarodigital/ts-lib-error-reporting/lib/v1/internal";

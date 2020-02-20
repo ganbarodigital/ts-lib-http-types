@@ -34,7 +34,7 @@
 import { expect } from "chai";
 import { describe } from "mocha";
 
-import { isHttpStatusCode } from "../internal";
+import { isHttpStatusCode } from ".";
 
 describe("isHttpStatusCode()", () => {
     it("accepts numbers in the range 100-599 inclusive", () => {
