@@ -37,13 +37,13 @@ import {
     ExtraDataTemplate,
     NoExtraDataTemplate,
 } from "@ganbarodigital/ts-lib-error-reporting/lib/v1";
-import { PackageName } from "@ganbarodigital/ts-lib-packagename/lib/v1";
+import { packageNameFrom } from "@ganbarodigital/ts-lib-packagename/lib/v1";
 
 import { HttpStatusCode } from "../HttpStatusCode";
 import { HttpStatusCodeOutOfRangeTemplate } from "./HttpStatusCodeOutOfRange";
 import { NotAnIntegerTemplate } from "./NotAnInteger";
 
-const PACKAGE_NAME = "@ganbarodigital/ts-lib-http-types/lib/v1" as PackageName;
+const PACKAGE_NAME = packageNameFrom("@ganbarodigital/ts-lib-http-types/lib/v1");
 
 export class PackageErrorTable implements ErrorTable {
     [key: string]: ErrorTableTemplateWithNoExtraData<ErrorTable, string, ExtraDataTemplate | NoExtraDataTemplate>;
