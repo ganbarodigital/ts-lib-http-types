@@ -40,7 +40,7 @@ import {
     StructuredProblemReportDataWithExtraData,
 } from "@ganbarodigital/ts-lib-error-reporting/lib/v1";
 
-import { ERROR_TABLE, PackageErrorTable } from "./PackageErrorTable";
+import { ERROR_TABLE, PackageErrorTable } from "../internal";
 
 interface HttpStatusCodeOutOfRangeExtraData extends ExtraPublicData {
     public: {

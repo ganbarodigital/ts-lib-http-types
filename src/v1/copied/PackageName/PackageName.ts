@@ -31,45 +31,25 @@
 // ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-import {
-    ErrorTable,
-    ErrorTableTemplateWithNoExtraData,
-    ExtraDataTemplate,
-    NoExtraDataTemplate,
-} from "@ganbarodigital/ts-lib-error-reporting/lib/v1";
 
-import { httpStatusCodeFrom, PackageName } from "../internal";
-import { HttpStatusCodeOutOfRangeTemplate } from "./HttpStatusCodeOutOfRange";
-import { NotAnIntegerTemplate } from "./NotAnInteger";
-
-const PACKAGE_NAME = "@ganbarodigital/ts-lib-http-types/lib/v1" as PackageName;
-
-export class PackageErrorTable implements ErrorTable {
-    [key: string]: ErrorTableTemplateWithNoExtraData<ErrorTable, string, ExtraDataTemplate | NoExtraDataTemplate>;
-
-    public "http-status-code-out-of-range": HttpStatusCodeOutOfRangeTemplate = {
-        packageName: PACKAGE_NAME,
-        errorName: "http-status-code-out-of-range",
-        detail: "input falls outside the range of a valid HTTP status code",
-        status: httpStatusCodeFrom(422),
-        extra: {
-            public: {
-                input: 0,
-            },
-        },
-    };
-
-    public "not-an-integer": NotAnIntegerTemplate = {
-        packageName: PACKAGE_NAME,
-        errorName: "not-an-integer",
-        detail: "input must be an integer; was a float",
-        status: httpStatusCodeFrom(422),
-        extra: {
-            public: {
-                input: 0,
-            },
-        },
-    };
-}
-
-export const ERROR_TABLE = new PackageErrorTable();
+/**
+ * represents the name of a TypeScript package
+ *
+ * the package can be:
+ * - any valid NPM package name
+ * - and can include sub-package names too
+ *
+ * Sub-package names can include uppercase characters.
+ *
+ * examples of valid PackageNames include:
+ *
+ * - ts-lib-packagename
+ * - @ganbarodigital/ts-lib-packagename
+ * - @ganbarodigital/ts-lib-packagename/v1
+ * - @ganbarodigital/ts-lib-packagename/V1/types
+ *
+ * Relative module names are not supported.
+ *
+ * At runtime, PackageName resolves to being just a `string`.
+ */
+export type PackageName = string & { _type: "@ganbarodigital/PackageName" };

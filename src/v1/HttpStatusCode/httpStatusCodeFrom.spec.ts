@@ -35,8 +35,7 @@ import { AnyAppError, OnError } from "@ganbarodigital/ts-lib-error-reporting/lib
 import { expect } from "chai";
 import { describe } from "mocha";
 
-import { HttpStatusCode } from "./HttpStatusCode";
-import { httpStatusCodeFrom } from "./httpStatusCodeFrom";
+import { HttpStatusCode, httpStatusCodeFrom } from "../internal";
 
 describe("httpStatusCodeFrom()", () => {
     const onError: OnError = (e: AnyAppError): never => {
