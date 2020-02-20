@@ -31,7 +31,7 @@
 // ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-import { OnError } from "@ganbarodigital/ts-on-error/lib/V1";
+import { AnyAppError, OnError } from "@ganbarodigital/ts-lib-error-reporting/lib/v1";
 import { expect } from "chai";
 import { describe } from "mocha";
 
@@ -39,13 +39,13 @@ import { HttpStatusCode } from "./HttpStatusCode";
 import { httpStatusCodeFrom } from "./httpStatusCodeFrom";
 
 describe("httpStatusCodeFrom()", () => {
-    const onError: OnError = (reason: symbol, desc: string, extra: object): never => {
-        throw new Error(JSON.stringify(extra));
+    const onError: OnError = (e: AnyAppError): never => {
+        throw new Error(JSON.stringify(e.details.extra));
     };
 
     const identity = (input: HttpStatusCode): HttpStatusCode => {
         return input;
-    }
+    };
 
     it("converts integers in the range 100-599 inclusive", () => {
         for (let inputValue = 100; inputValue < 600; inputValue++) {
@@ -76,7 +76,7 @@ describe("httpStatusCodeFrom()", () => {
     });
 
     it("has a default error handler", () => {
-        const expectedMessage = "invalid HTTP status code";
+        const expectedMessage = "input falls outside the range of a valid HTTP status code";
         expect(() => httpStatusCodeFrom(700)).to.throw(expectedMessage);
     });
 });

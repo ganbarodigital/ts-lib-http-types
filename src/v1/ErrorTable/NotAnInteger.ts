@@ -31,29 +31,61 @@
 // ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-import { OnError, THROW_THE_ERROR } from "@ganbarodigital/ts-lib-error-reporting/lib/v1";
+import {
+    AppError,
+    AppErrorParams,
+    ErrorTableTemplateWithExtraData,
+    ExtraPublicData,
+    StructuredProblemReport,
+    StructuredProblemReportDataWithExtraData,
+} from "@ganbarodigital/ts-lib-error-reporting/lib/v1";
 
-import { HttpStatusCodeOutOfRangeError, NotAnIntegerError } from "../ErrorTable";
-import { isHttpStatusCode } from "./isHttpStatusCode";
+import { ERROR_TABLE, PackageErrorTable } from "./PackageErrorTable";
 
-/**
- * data guarantee. calls the supplied `onError()` handler if the `input`
- * number is not a valid HTTP status code.
- */
-export function mustBeHttpStatusCode(input: number, onError: OnError = THROW_THE_ERROR): void {
-    // make sure that `input` is an integer
-    //
-    // if anyone passes in a massive number, this will report a false
-    // error ... but the performance increase that comes from the bitshift
-    // operation is more than worth it
-    // tslint:disable-next-line: no-bitwise
-    if (input >>> 0 !== input) {
-        onError(new NotAnIntegerError({public: {input}}));
+interface NotAnIntegerExtraData extends ExtraPublicData {
+    public: {
+        input: number;
+    };
+}
+
+export type NotAnIntegerTemplate = ErrorTableTemplateWithExtraData<
+    PackageErrorTable,
+    "not-an-integer",
+    NotAnIntegerExtraData
+>;
+
+type NotAnIntegerData = StructuredProblemReportDataWithExtraData<
+    PackageErrorTable,
+    "not-an-integer",
+    NotAnIntegerTemplate,
+    NotAnIntegerExtraData
+>;
+
+type NotAnIntegerSPR = StructuredProblemReport<
+    PackageErrorTable,
+    "not-an-integer",
+    NotAnIntegerTemplate,
+    NotAnIntegerExtraData,
+    NotAnIntegerData
+>;
+
+export class NotAnIntegerError extends AppError<
+    PackageErrorTable,
+    "not-an-integer",
+    NotAnIntegerTemplate,
+    NotAnIntegerExtraData,
+    NotAnIntegerData,
+    NotAnIntegerSPR
+> {
+    public constructor(params: NotAnIntegerExtraData & AppErrorParams) {
+        const errorData: NotAnIntegerData = {
+            template: ERROR_TABLE["not-an-integer"],
+            errorId: params.errorId,
+            extra: {
+                public: params.public,
+            },
+        };
+
+        super(StructuredProblemReport.from(errorData));
     }
-
-    if (!isHttpStatusCode(input)) {
-        onError(new HttpStatusCodeOutOfRangeError({public: {input}}));
-    }
-
-    // if we get here, all is good
 }
