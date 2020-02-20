@@ -31,29 +31,7 @@
 // ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-import { OnError, THROW_THE_ERROR } from "@ganbarodigital/ts-lib-error-reporting/lib/v1";
 
-import { HttpStatusCodeOutOfRangeError, NotAnIntegerError } from "../ErrorTable";
-import { isHttpStatusCode } from "./isHttpStatusCode";
-
-/**
- * data guarantee. calls the supplied `onError()` handler if the `input`
- * number is not a valid HTTP status code.
- */
-export function mustBeHttpStatusCode(input: number, onError: OnError = THROW_THE_ERROR): void {
-    // make sure that `input` is an integer
-    //
-    // if anyone passes in a massive number, this will report a false
-    // error ... but the performance increase that comes from the bitshift
-    // operation is more than worth it
-    // tslint:disable-next-line: no-bitwise
-    if (input >>> 0 !== input) {
-        onError(new NotAnIntegerError({public: {input}}));
-    }
-
-    if (!isHttpStatusCode(input)) {
-        onError(new HttpStatusCodeOutOfRangeError({public: {input}}));
-    }
-
-    // if we get here, all is good
-}
+export { ERROR_TABLE, PackageErrorTable } from "./PackageErrorTable";
+export { HttpStatusCodeOutOfRangeError } from "./HttpStatusCodeOutOfRange";
+export { NotAnIntegerError } from "./NotAnInteger";

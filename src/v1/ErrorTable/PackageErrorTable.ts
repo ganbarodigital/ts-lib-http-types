@@ -31,29 +31,48 @@
 // ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-import { OnError, THROW_THE_ERROR } from "@ganbarodigital/ts-lib-error-reporting/lib/v1";
+import {
+    ErrorTable,
+    ErrorTableTemplateWithNoExtraData,
+    ExtraDataTemplate,
+    NoExtraDataTemplate,
+} from "@ganbarodigital/ts-lib-error-reporting/lib/v1";
+import { PackageName } from "@ganbarodigital/ts-lib-packagename/lib/v1";
 
-import { HttpStatusCodeOutOfRangeError, NotAnIntegerError } from "../ErrorTable";
-import { isHttpStatusCode } from "./isHttpStatusCode";
+import { HttpStatusCode } from "../HttpStatusCode";
+import { HttpStatusCodeOutOfRangeTemplate } from "./HttpStatusCodeOutOfRange";
+import { NotAnIntegerTemplate } from "./NotAnInteger";
 
-/**
- * data guarantee. calls the supplied `onError()` handler if the `input`
- * number is not a valid HTTP status code.
- */
-export function mustBeHttpStatusCode(input: number, onError: OnError = THROW_THE_ERROR): void {
-    // make sure that `input` is an integer
-    //
-    // if anyone passes in a massive number, this will report a false
-    // error ... but the performance increase that comes from the bitshift
-    // operation is more than worth it
-    // tslint:disable-next-line: no-bitwise
-    if (input >>> 0 !== input) {
-        onError(new NotAnIntegerError({public: {input}}));
-    }
+const PACKAGE_NAME = "@ganbarodigital/ts-lib-http-types/lib/v1" as PackageName;
 
-    if (!isHttpStatusCode(input)) {
-        onError(new HttpStatusCodeOutOfRangeError({public: {input}}));
-    }
+export class PackageErrorTable implements ErrorTable {
+    [key: string]: ErrorTableTemplateWithNoExtraData<ErrorTable, string, ExtraDataTemplate | NoExtraDataTemplate>;
 
-    // if we get here, all is good
+    public "http-status-code-out-of-range": HttpStatusCodeOutOfRangeTemplate = {
+        packageName: PACKAGE_NAME,
+        errorName: "http-status-code-out-of-range",
+        detail: "input falls outside the range of a valid HTTP status code",
+        // mocha/ts-node can't cope if we use `httpStatusCodeFrom()` here
+        status: 422 as HttpStatusCode,
+        extra: {
+            public: {
+                input: 0,
+            },
+        },
+    };
+
+    public "not-an-integer": NotAnIntegerTemplate = {
+        packageName: PACKAGE_NAME,
+        errorName: "not-an-integer",
+        detail: "input must be an integer; was a float",
+        // mocha/ts-node can't cope if we use `httpStatusCodeFrom()` here
+        status: 422 as HttpStatusCode,
+        extra: {
+            public: {
+                input: 0,
+            },
+        },
+    };
 }
+
+export const ERROR_TABLE = new PackageErrorTable();
