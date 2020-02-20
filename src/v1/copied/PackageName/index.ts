@@ -32,15 +32,4 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //
 
-// copied from ts-lib-value-objects, so that we can break the
-// circular dependency
-interface Branding<BrandingT extends string> {
-    BrandingT: BrandingT;
-}
-
-type Branded<T, BrandingT extends string> = T & Branding<BrandingT>;
-
-/**
- * represents any HTTP status code in the range `100` to `599` inclusive
- */
-export type HttpStatusCode = Branded<number, "@ganbarodigital/HttpStatusCode">;
+export * from "./PackageName";

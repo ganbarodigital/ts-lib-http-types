@@ -32,15 +32,24 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //
 
-// copied from ts-lib-value-objects, so that we can break the
-// circular dependency
-interface Branding<BrandingT extends string> {
-    BrandingT: BrandingT;
-}
-
-type Branded<T, BrandingT extends string> = T & Branding<BrandingT>;
-
 /**
- * represents any HTTP status code in the range `100` to `599` inclusive
+ * represents the name of a TypeScript package
+ *
+ * the package can be:
+ * - any valid NPM package name
+ * - and can include sub-package names too
+ *
+ * Sub-package names can include uppercase characters.
+ *
+ * examples of valid PackageNames include:
+ *
+ * - ts-lib-packagename
+ * - @ganbarodigital/ts-lib-packagename
+ * - @ganbarodigital/ts-lib-packagename/v1
+ * - @ganbarodigital/ts-lib-packagename/V1/types
+ *
+ * Relative module names are not supported.
+ *
+ * At runtime, PackageName resolves to being just a `string`.
  */
-export type HttpStatusCode = Branded<number, "@ganbarodigital/HttpStatusCode">;
+export type PackageName = string & { _type: "@ganbarodigital/PackageName" };

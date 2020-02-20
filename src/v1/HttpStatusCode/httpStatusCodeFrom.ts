@@ -31,17 +31,16 @@
 // ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 //
-import { makeRefinedTypeFactory, RefinedTypeFactory } from "@ganbarodigital/ts-lib-value-objects/lib/v2";
+import { OnError, THROW_THE_ERROR } from "@ganbarodigital/ts-lib-error-reporting/lib/v1";
 
 import { HttpStatusCode } from "./HttpStatusCode";
 import { mustBeHttpStatusCode } from "./mustBeHttpStatusCode";
 
-// we need to give the TypeScript compiler a bit of help
-type HttpStatusCodeFactory = RefinedTypeFactory<number, HttpStatusCode>;
-
 /**
  * smart constructor. turns a `number` type into a `HttpStatusCode` type
  */
-export const httpStatusCodeFrom: HttpStatusCodeFactory = makeRefinedTypeFactory(
-    mustBeHttpStatusCode,
-);
+export function httpStatusCodeFrom(input: number, onError: OnError = THROW_THE_ERROR): HttpStatusCode {
+    mustBeHttpStatusCode(input, onError);
+
+    return input as HttpStatusCode;
+}
