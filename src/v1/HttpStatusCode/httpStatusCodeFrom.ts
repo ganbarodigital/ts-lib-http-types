@@ -33,8 +33,7 @@
 //
 import { OnError, THROW_THE_ERROR } from "@ganbarodigital/ts-lib-error-reporting/lib/v1";
 
-import { HttpStatusCode } from "./HttpStatusCode";
-import { mustBeHttpStatusCode } from "./mustBeHttpStatusCode";
+import { HttpStatusCode, mustBeHttpStatusCode } from "../internal";
 
 /**
  * smart constructor. turns a `number` type into a `HttpStatusCode` type

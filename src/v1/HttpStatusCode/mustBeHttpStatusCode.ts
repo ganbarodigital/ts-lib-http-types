@@ -33,8 +33,7 @@
 //
 import { OnError, THROW_THE_ERROR } from "@ganbarodigital/ts-lib-error-reporting/lib/v1";
 
-import { HttpStatusCodeOutOfRangeError, NotAnIntegerError } from "../ErrorTable";
-import { isHttpStatusCode } from "./isHttpStatusCode";
+import { HttpStatusCodeOutOfRangeError, isHttpStatusCode, NotAnIntegerError } from "../internal";
 
 /**
  * data guarantee. calls the supplied `onError()` handler if the `input`
