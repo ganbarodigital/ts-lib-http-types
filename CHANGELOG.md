@@ -21,6 +21,8 @@ For each release, changes are grouped under these headings:
 
 The following changes have been completed, and will be included in the next tagged release.
 
+## v0.1.3
+
 ### Fixes
 
 * Introduced `internal.ts` to resolve circular dependencies within the package.
