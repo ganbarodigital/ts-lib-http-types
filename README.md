@@ -78,6 +78,12 @@ export function mustBeHttpStatusCode(input: number, onError: OnError): void
 
 `mustBeHttpStatusCode()` is a _data guarantee_. Use it to make sure that a given number is a valid HTTP status code.
 
+## Internal Note
+
+This package simply republishes internal types from [@ganbarodigital/ts-lib-error-reporting](https://github.com/ganbarodigital/ts-lib-error-reporting/).
+
+The types used to live in here. Unfortunately, we ran into a lot of trouble with circular dependencies (which broke unit testing).
+
 ## NPM Scripts
 
 ### npm run clean

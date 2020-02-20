@@ -32,7 +32,9 @@
 // POSSIBILITY OF SUCH DAMAGE.
 //
 
-export * from "./HttpStatusCode";
-export * from "./httpStatusCodeFrom";
-export * from "./isHttpStatusCode";
-export * from "./mustBeHttpStatusCode";
+export {
+    HttpStatusCode,
+    isHttpStatusCode,
+    mustBeHttpStatusCode,
+    httpStatusCodeFrom,
+} from "@ganbarodigital/ts-lib-error-reporting/lib/v1/internal";
