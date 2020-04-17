@@ -1,5 +1,7 @@
 # Basic Types for the HTTP Protocol
 
+![Node.js CI](https://github.com/ganbarodigital/ts-lib-http-types/workflows/Node.js%20CI/badge.svg)
+
 ## Introduction
 
 This TypeScript library provides some basic types to describe the HTTP protocol. Use it to improve the type-safety of your code.
