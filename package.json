@@ -1,6 +1,6 @@
 {
   "name": "@ganbarodigital/ts-lib-http-types",
-  "version": "0.1.6",
+  "version": "0.3.0",
   "description": "Basic types to describe the HTTP protocol",
   "repository": "github:ganbarodigital/ts-lib-http-types",
   "main": "lib/index.js",
@@ -29,12 +29,12 @@
   ],
   "license": "BSD-3-Clause",
   "dependencies": {
-    "@ganbarodigital/ts-lib-error-reporting": "^0.2.2"
+    "@ganbarodigital/ts-lib-error-reporting": "^0.3.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
-    "@types/node": "^13.11.0",
+    "@types/node": "^13.11.1",
     "chai": "^4.2.0",
     "chai-bytes": "^0.1.2",
     "mocha": "^7.1.1",
