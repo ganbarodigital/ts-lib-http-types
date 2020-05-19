@@ -35,6 +35,8 @@
 export {
     ERROR_TABLE,
     PackageErrorTable,
+} from "@ganbarodigital/ts-lib-error-reporting/lib/v1/Errors/PackageErrorTable";
+export {
     HttpStatusCodeOutOfRangeError,
     NotAnIntegerError,
-} from "@ganbarodigital/ts-lib-error-reporting/lib/v1/internal";
+} from "@ganbarodigital/ts-lib-error-reporting/lib/v1";

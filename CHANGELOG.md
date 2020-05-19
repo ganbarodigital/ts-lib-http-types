@@ -21,6 +21,18 @@ For each release, changes are grouped under these headings:
 
 The following changes have been completed, and will be included in the next tagged release.
 
+## v0.3.1
+
+Released Tuesday, 19th May 2020.
+
+### Fixes
+
+* No longer relies on the secret `internals` export file of `ts-lib-error-reporting`
+
+### Tools
+
+* Upgraded the `scripts` section in `package.json` to the latest standard.
+
 ## v0.3.0
 
 Released Friday, 17th April 2020.

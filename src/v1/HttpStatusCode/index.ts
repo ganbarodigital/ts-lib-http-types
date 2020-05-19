@@ -37,4 +37,4 @@ export {
     isHttpStatusCode,
     mustBeHttpStatusCode,
     httpStatusCodeFrom,
-} from "@ganbarodigital/ts-lib-error-reporting/lib/v1/internal";
+} from "@ganbarodigital/ts-lib-error-reporting/lib/v1/internal/HttpStatusCode";
