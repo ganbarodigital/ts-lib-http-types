@@ -21,6 +21,10 @@ For each release, changes are grouped under these headings:
 
 The following changes have been completed, and will be included in the next tagged release.
 
+### Fixes
+
+* No longer relies on the secret `internals` export file of `ts-lib-error-reporting`
+
 ### Tools
 
 * Upgraded the `scripts` section in `package.json` to the latest standard.
